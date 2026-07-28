@@ -1,0 +1,215 @@
+# 📓 Daily Log — Registro de progreso diario
+
+## ¿Qué es el Daily Standup y por qué existe?
+
+El **Daily Standup** (o Daily Scrum) es una reunión de **máximo 15 minutos** que se
+realiza cada día a la misma hora. Su propósito NO es reportar avances al jefe — es
+una conversación entre pares para sincronizar el equipo y detectar bloqueos temprano.
+
+Cada desarrollador responde **3 preguntas**:
+1. ✅ **¿Qué hice ayer?** — Para que el equipo sepa qué avanzó
+2. 🎯 **¿Qué haré hoy?** — Para que el equipo sepa en qué estás trabajando
+3. 🚧 **¿Hay algo que me bloquea?** — Para pedir ayuda antes de perder horas atascado
+
+> **Error común:** Convertir el Daily en una reunión de estado donde cada uno reporta
+> al líder. El Daily es PARA el equipo, no para el manager. Si algo tarda más de 15
+> minutos, se agenda una conversación aparte.
+
+Este archivo es el **registro escrito** de esas respuestas. Sirve como historial del
+sprint y ayuda a identificar patrones (¿siempre hay bloqueos el miércoles? ¿por qué?).
+
+---
+
+## 📅 Semana 1 — Sprint 1
+
+---
+
+### 📆 LUNES
+
+> *Primer día del sprint — no hay "ayer", solo el "hoy" y el Sprint Goal.*
+
+**Dev A (Frontend):**
+- ✅ Hice ayer: *(primer día, no aplica)*
+- 🎯 Haré hoy: Setup del proyecto frontend con `npx create-react-app`. Instalar Tailwind CSS. Crear estructura de carpetas y componentes base (Header, Footer, Layout). Configurar React Router.
+- 🚧 Impedimentos: Ninguno
+
+**Dev B (Backend):**
+- ✅ Hice ayer: *(primer día, no aplica)*
+- 🎯 Haré hoy: Setup del proyecto backend con Node.js + Express. Crear `.env` desde `.env.example`. Diseñar esquema SQL. Implementar endpoints `GET /products` y `GET /products/:id`.
+- 🚧 Impedimentos: Ninguno
+
+**📝 Progreso del día (registro en tiempo real):**
+- ✅ Repositorio Git inicializado
+- ✅ `.gitignore` configurado
+- ✅ Estructura de carpetas `backend/` y `frontend/` creada
+- ✅ `backend/package.json` con dependencias (express, cors, dotenv, pg, jsonwebtoken, bcryptjs)
+- ✅ `backend/src/index.js` — servidor Express base
+- ✅ `backend/.env.example` — plantilla de variables de entorno
+- 🔄 Pendiente: setup frontend con create-react-app
+- 🔄 Pendiente: primer commit a Git
+- 🔄 Pendiente: crear rama `develop`
+
+**🔄 Sync del día (17:00):**
+- Contrato de API acordado: *(documentar aquí el formato JSON de respuesta de /products)*
+- Decisiones tomadas: *(anotar)*
+
+---
+
+### 📆 MARTES
+
+**Dev A (Frontend):**
+- ✅ Hice ayer:
+- 🎯 Haré hoy:
+- 🚧 Impedimentos:
+
+**Dev B (Backend):**
+- ✅ Hice ayer:
+- 🎯 Haré hoy:
+- 🚧 Impedimentos:
+
+**🔄 Sync del día (17:00):**
+- Login end-to-end probado: ⬜ Sí / ⬜ No
+- Problemas encontrados:
+- Decisiones tomadas:
+
+---
+
+### 📆 MIÉRCOLES
+
+**Dev A (Frontend):**
+- ✅ Hice ayer:
+- 🎯 Haré hoy:
+- 🚧 Impedimentos:
+
+**Dev B (Backend):**
+- ✅ Hice ayer:
+- 🎯 Haré hoy:
+- 🚧 Impedimentos:
+
+**🔄 Sync del día (17:00):**
+- Flujo catálogo → carrito probado: ⬜ Sí / ⬜ No
+- Problemas encontrados:
+- Decisiones tomadas:
+
+---
+
+### 📆 JUEVES
+
+**Dev A (Frontend):**
+- ✅ Hice ayer:
+- 🎯 Haré hoy:
+- 🚧 Impedimentos:
+
+**Dev B (Backend):**
+- ✅ Hice ayer:
+- 🎯 Haré hoy:
+- 🚧 Impedimentos:
+
+**🔄 Sync del día (17:00):**
+- Flujo completo carrito → checkout → confirmación probado: ⬜ Sí / ⬜ No
+- Problemas encontrados:
+- Decisiones tomadas:
+
+---
+
+### 📆 VIERNES
+
+**Dev A (Frontend):**
+- ✅ Hice ayer:
+- 🎯 Haré hoy:
+- 🚧 Impedimentos:
+
+**Dev B (Backend):**
+- ✅ Hice ayer:
+- 🎯 Haré hoy:
+- 🚧 Impedimentos:
+
+---
+
+## 🔄 Sprint Review — Viernes 14:00
+
+> **¿Qué es el Sprint Review?** Es la ceremonia donde el equipo presenta lo que
+> construyó durante el sprint. Se hace una **demo en vivo** de la aplicación funcionando,
+> no slides. El objetivo es obtener feedback real.
+>
+> **Error común:** Presentar trabajo incompleto como si estuviera listo, o mostrar
+> capturas de pantalla en lugar de la app funcionando.
+
+### ¿Qué se completó?
+
+| User Story | Estado | Notas |
+|-----------|--------|-------|
+| US-01: Ver catálogo | ⬜ | |
+| US-02: Buscar productos | ⬜ | |
+| US-03: Registro/Login | ⬜ | |
+| US-04: Agregar al carrito | ⬜ | |
+| US-05: Ver/editar carrito | ⬜ | |
+| US-06: Checkout | ⬜ | |
+| US-07: Admin CRUD productos | ⬜ | |
+| US-08: Admin ver pedidos | ⬜ | |
+| US-09: Detalle de producto | ⬜ | |
+| US-10: Historial pedidos | ⬜ | |
+
+### ¿Qué quedó pendiente y por qué?
+
+*(Anotar aquí)*
+
+### Feedback recibido:
+
+*(Anotar aquí)*
+
+---
+
+## 🪞 Sprint Retrospective — Viernes 15:30
+
+> **¿Qué es la Retrospectiva?** Es la ceremonia más importante para el crecimiento
+> del equipo. Es el espacio seguro para hablar honestamente de lo que salió bien,
+> lo que salió mal y qué cambiar en el próximo sprint.
+>
+> **Error común:** Saltársela porque "no hay tiempo". La retro es exactamente para
+> eso — para que el equipo mejore y el próximo sprint sea más eficiente.
+
+### 🟢 START — ¿Qué deberíamos EMPEZAR a hacer?
+
+*(Prácticas nuevas que el equipo debería adoptar)*
+
+- 
+- 
+
+### 🔴 STOP — ¿Qué deberíamos DEJAR de hacer?
+
+*(Cosas que no están funcionando y hay que eliminar)*
+
+- 
+- 
+
+### 🟡 CONTINUE — ¿Qué está funcionando bien y debemos MANTENER?
+
+*(Prácticas que el equipo valora y quiere conservar)*
+
+- 
+- 
+
+### 📌 Compromisos para el próximo sprint:
+
+1. 
+2. 
+3. 
+
+---
+
+## 📊 Definition of Done (DoD)
+
+> **¿Qué es el DoD?** Es la lista de criterios que TODOS deben cumplir para que una
+> tarea se considere "terminada". Sin DoD, cada desarrollador tiene su propia
+> interpretación de "listo", lo que genera deuda técnica y malentendidos.
+
+Una tarea está **✅ DONE** cuando:
+
+- [ ] El código funciona sin errores en el entorno local
+- [ ] Se hizo commit con mensaje descriptivo siguiendo la convención
+- [ ] Se abrió un Pull Request y fue revisado por el otro desarrollador
+- [ ] El PR fue mergeado a `develop`
+- [ ] La funcionalidad fue probada manualmente (happy path + al menos un caso de error)
+- [ ] El `SPRINT_PLAN.md` fue actualizado con el estado ✅
+- [ ] Si aplica: se actualizó el `README.md` o documentación relevante
