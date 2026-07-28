@@ -1,0 +1,11 @@
+/* 
+  Directivas de Tailwind CSS
+  Estas 3 líneas son OBLIGATORIAS para que Tailwind funcione.
+  
+  - @tailwind base: resetea los estilos del navegador (normaliza)
+  - @tailwind components: permite usar clases de componentes
+  - @tailwind utilities: incluye todas las clases utilitarias (flex, p-4, text-blue-500, etc.)
+*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
