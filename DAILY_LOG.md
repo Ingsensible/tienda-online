@@ -47,7 +47,7 @@ sprint y ayuda a identificar patrones (¿siempre hay bloqueos el miércoles? ¿p
 - ✅ `backend/.env.example` — plantilla de variables de entorno
 - 🔄 Pendiente: setup frontend con create-react-app
 - 🔄 Pendiente: primer commit a Git
-- 🔄 Pendiente: crear rama `develop`
+- � Pendiente: crear rama `develop`
 
 **🔄 Sync del día (17:00):**
 - Contrato de API acordado: *(documentar aquí el formato JSON de respuesta de /products)*
