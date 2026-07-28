@@ -45,13 +45,22 @@ sprint y ayuda a identificar patrones (¿siempre hay bloqueos el miércoles? ¿p
 - ✅ `backend/package.json` con dependencias (express, cors, dotenv, pg, jsonwebtoken, bcryptjs)
 - ✅ `backend/src/index.js` — servidor Express base
 - ✅ `backend/.env.example` — plantilla de variables de entorno
-- 🔄 Pendiente: setup frontend con create-react-app
-- 🔄 Pendiente: primer commit a Git
-- � Pendiente: crear rama `develop`
+- ✅ Frontend: React 18 + Tailwind CSS v3 compilando en http://localhost:3000
+- ✅ Backend: Express corriendo en http://localhost:4000
+- ✅ PostgreSQL 16 instalado y conectado correctamente
+- ✅ Base de datos `tienda_online` creada y migración ejecutada (6 tablas + seed data)
+- ✅ Commits DEV-01 y DEV-02 mergeados a `develop`
+- ✅ `backend/src/config/db.js` — Pool de conexiones PostgreSQL
+- ✅ `backend/migrations/001_initial_schema.sql` — esquema completo
+- ✅ `backend/migrations/run.js` — script de migraciones
 
-**🔄 Sync del día (17:00):**
-- Contrato de API acordado: *(documentar aquí el formato JSON de respuesta de /products)*
-- Decisiones tomadas: *(anotar)*
+**🐛 Bugs encontrados y resueltos:**
+- Tailwind v4 incompatible con create-react-app → solución: bajar a Tailwind v3
+- PostgreSQL no estaba en el PATH → solución: usar variable PGPASSWORD
+
+**🔄 Sync del día:**
+- Backend en puerto 4000, frontend en 3000, CORS configurado
+- Próximo paso (Martes): implementar autenticación JWT (register + login)
 
 ---
 
