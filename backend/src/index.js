@@ -35,13 +35,15 @@ app.get('/', (req, res) => {
   });
 });
 
-// TODO: Agregar rutas aquí conforme avance el sprint
+// Rutas de la API
+const authRoutes = require('./routes/auth');
+app.use('/api/auth', authRoutes);
+
+// TODO: Agregar más rutas conforme avance el sprint
 // const productRoutes = require('./routes/products');
-// const authRoutes    = require('./routes/auth');
 // const cartRoutes    = require('./routes/cart');
 // const orderRoutes   = require('./routes/orders');
 // app.use('/api/products', productRoutes);
-// app.use('/api/auth',     authRoutes);
 // app.use('/api/cart',     cartRoutes);
 // app.use('/api/orders',   orderRoutes);
 

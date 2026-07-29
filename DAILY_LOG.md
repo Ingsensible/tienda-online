@@ -67,14 +67,16 @@ sprint y ayuda a identificar patrones (¿siempre hay bloqueos el miércoles? ¿p
 ### 📆 MARTES
 
 **Dev A (Frontend):**
-- ✅ Hice ayer:
-- 🎯 Haré hoy:
-- 🚧 Impedimentos:
+- ✅ Hice ayer: Setup de React + Tailwind CSS, estructura de carpetas, App.js base
+- 🎯 Haré hoy: Páginas de Login y Registro (formularios + validación), AuthContext, rutas protegidas
+- 🚧 Impedimentos: Ninguno
 
 **Dev B (Backend):**
-- ✅ Hice ayer:
-- 🎯 Haré hoy:
-- 🚧 Impedimentos:
+- ✅ Hice ayer: Setup de Express + PostgreSQL, esquema SQL, migración ejecutada, servidor corriendo
+- 🎯 Haré hoy: Endpoints POST /auth/register y POST /auth/login con JWT, middleware de autenticación
+- 🚧 Impedimentos: Ninguno
+
+**📝 Progreso del día (registro en tiempo real):**
 
 **🔄 Sync del día (17:00):**
 - Login end-to-end probado: ⬜ Sí / ⬜ No
