@@ -77,11 +77,22 @@ sprint y ayuda a identificar patrones (¿siempre hay bloqueos el miércoles? ¿p
 - 🚧 Impedimentos: Ninguno
 
 **📝 Progreso del día (registro en tiempo real):**
+- ✅ `backend/src/middleware/auth.js` — middleware JWT (autenticación + autorización por rol)
+- ✅ `backend/src/controllers/authController.js` — register, login, getMe con bcrypt + JWT
+- ✅ `backend/src/routes/auth.js` — POST /api/auth/register, POST /api/auth/login, GET /api/auth/me
+- ✅ Endpoints probados con Invoke-WebRequest: register ✅ login ✅ /me con token ✅
+- ✅ `frontend/src/services/authService.js` — axios con interceptor JWT
+- ✅ `frontend/src/context/AuthContext.js` — Context API con login, register, logout
+- ✅ `frontend/src/pages/LoginPage.js` y `RegisterPage.js` — formularios con validación
+- ✅ `frontend/src/components/ProtectedRoute.js` — rutas protegidas por rol
+- ✅ `frontend/src/App.js` — Router, Header dinámico, rutas configuradas
+- ✅ Login end-to-end probado en navegador: usuario creado y sesión iniciada
+- ✅ DEV-04 y DEV-05 mergeados a `develop`
 
-**🔄 Sync del día (17:00):**
-- Login end-to-end probado: ⬜ Sí / ⬜ No
-- Problemas encontrados:
-- Decisiones tomadas:
+**🔄 Sync del día:**
+- Login end-to-end probado: ✅ Sí
+- Problemas encontrados: Ninguno
+- Decisiones tomadas: ProtectedRoute listo para usar en rutas del Miércoles
 
 ---
 
