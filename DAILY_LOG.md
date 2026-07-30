@@ -145,11 +145,24 @@ sprint y ayuda a identificar patrones (¿siempre hay bloqueos el miércoles? ¿p
 - 🚧 Impedimentos: Ninguno
 
 **📝 Progreso del día (registro en tiempo real):**
+- ✅ `backend/src/controllers/orderController.js` — POST /api/orders con transacción SQL (BEGIN/COMMIT/ROLLBACK)
+- ✅ `backend/src/routes/orders.js` — rutas de usuario y admin registradas
+- ✅ POST /api/orders probado: crea orden, descuenta stock, vacía carrito ✅
+- ✅ `frontend/src/services/orderService.js` — createOrder, getMyOrders, getOrderById, admin endpoints
+- ✅ `frontend/src/pages/CheckoutPage.js` — formulario de envío + resumen del pedido
+- ✅ `frontend/src/pages/OrderHistoryPage.js` — lista de pedidos + detalle con estado
+- ✅ `frontend/src/pages/AdminPage.js` — CRUD productos + gestión de órdenes con tabs
+- ✅ `frontend/src/App.js` — rutas /checkout, /orders, /orders/:id, /admin + links en Header
+- ✅ DEV-08 y DEV-09 mergeados a `develop`
+
+**🐛 Bugs encontrados y resueltos:**
+- `shipping_name` y `shipping_city` NOT NULL en tabla orders → solución: agregar campos al controller
+- `unit_price` no existe en order_items (columna real: `price`) → solución: corregir INSERT y SELECT
 
 **🔄 Sync del día:**
-- Flujo completo carrito → checkout → confirmación probado: ⬜ Sí / ⬜ No
-- Problemas encontrados:
-- Decisiones tomadas:
+- Flujo completo carrito → checkout → confirmación probado: ✅ Sí
+- Problemas encontrados: Columnas incorrectas en orders y order_items (resueltos)
+- Decisiones tomadas: /admin protegido por rol 'admin', /checkout redirige a /cart si está vacío
 
 ---
 
