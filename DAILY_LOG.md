@@ -45,84 +45,151 @@ sprint y ayuda a identificar patrones (¿siempre hay bloqueos el miércoles? ¿p
 - ✅ `backend/package.json` con dependencias (express, cors, dotenv, pg, jsonwebtoken, bcryptjs)
 - ✅ `backend/src/index.js` — servidor Express base
 - ✅ `backend/.env.example` — plantilla de variables de entorno
-- 🔄 Pendiente: setup frontend con create-react-app
-- 🔄 Pendiente: primer commit a Git
-- 🔄 Pendiente: crear rama `develop`
+- ✅ Frontend: React 18 + Tailwind CSS v3 compilando en http://localhost:3000
+- ✅ Backend: Express corriendo en http://localhost:4000
+- ✅ PostgreSQL 16 instalado y conectado correctamente
+- ✅ Base de datos `tienda_online` creada y migración ejecutada (6 tablas + seed data)
+- ✅ Commits DEV-01 y DEV-02 mergeados a `develop`
+- ✅ `backend/src/config/db.js` — Pool de conexiones PostgreSQL
+- ✅ `backend/migrations/001_initial_schema.sql` — esquema completo
+- ✅ `backend/migrations/run.js` — script de migraciones
 
-**🔄 Sync del día (17:00):**
-- Contrato de API acordado: *(documentar aquí el formato JSON de respuesta de /products)*
-- Decisiones tomadas: *(anotar)*
+**🐛 Bugs encontrados y resueltos:**
+- Tailwind v4 incompatible con create-react-app → solución: bajar a Tailwind v3
+- PostgreSQL no estaba en el PATH → solución: usar variable PGPASSWORD
+
+**🔄 Sync del día:**
+- Backend en puerto 4000, frontend en 3000, CORS configurado
+- Próximo paso (Martes): implementar autenticación JWT (register + login)
 
 ---
 
 ### 📆 MARTES
 
 **Dev A (Frontend):**
-- ✅ Hice ayer:
-- 🎯 Haré hoy:
-- 🚧 Impedimentos:
+- ✅ Hice ayer: Setup de React + Tailwind CSS, estructura de carpetas, App.js base
+- 🎯 Haré hoy: Páginas de Login y Registro (formularios + validación), AuthContext, rutas protegidas
+- 🚧 Impedimentos: Ninguno
 
 **Dev B (Backend):**
-- ✅ Hice ayer:
-- 🎯 Haré hoy:
-- 🚧 Impedimentos:
+- ✅ Hice ayer: Setup de Express + PostgreSQL, esquema SQL, migración ejecutada, servidor corriendo
+- 🎯 Haré hoy: Endpoints POST /auth/register y POST /auth/login con JWT, middleware de autenticación
+- 🚧 Impedimentos: Ninguno
 
-**🔄 Sync del día (17:00):**
-- Login end-to-end probado: ⬜ Sí / ⬜ No
-- Problemas encontrados:
-- Decisiones tomadas:
+**📝 Progreso del día (registro en tiempo real):**
+- ✅ `backend/src/middleware/auth.js` — middleware JWT (autenticación + autorización por rol)
+- ✅ `backend/src/controllers/authController.js` — register, login, getMe con bcrypt + JWT
+- ✅ `backend/src/routes/auth.js` — POST /api/auth/register, POST /api/auth/login, GET /api/auth/me
+- ✅ Endpoints probados con Invoke-WebRequest: register ✅ login ✅ /me con token ✅
+- ✅ `frontend/src/services/authService.js` — axios con interceptor JWT
+- ✅ `frontend/src/context/AuthContext.js` — Context API con login, register, logout
+- ✅ `frontend/src/pages/LoginPage.js` y `RegisterPage.js` — formularios con validación
+- ✅ `frontend/src/components/ProtectedRoute.js` — rutas protegidas por rol
+- ✅ `frontend/src/App.js` — Router, Header dinámico, rutas configuradas
+- ✅ Login end-to-end probado en navegador: usuario creado y sesión iniciada
+- ✅ DEV-04 y DEV-05 mergeados a `develop`
+
+**🔄 Sync del día:**
+- Login end-to-end probado: ✅ Sí
+- Problemas encontrados: Ninguno
+- Decisiones tomadas: ProtectedRoute listo para usar en rutas del Miércoles
 
 ---
 
 ### 📆 MIÉRCOLES
 
 **Dev A (Frontend):**
-- ✅ Hice ayer:
-- 🎯 Haré hoy:
-- 🚧 Impedimentos:
+- ✅ Hice ayer: Páginas Login/Registro, AuthContext, ProtectedRoute, Header dinámico
+- 🎯 Haré hoy: Página de catálogo con grid de productos, componente ProductCard, CartContext, página del carrito
+- 🚧 Impedimentos: Ninguno
 
 **Dev B (Backend):**
-- ✅ Hice ayer:
-- 🎯 Haré hoy:
-- 🚧 Impedimentos:
+- ✅ Hice ayer: Endpoints auth (register, login, /me), middleware JWT, bcrypt
+- 🎯 Haré hoy: GET /api/products, GET /api/products/:id, endpoints del carrito (GET/POST/PUT/DELETE)
+- 🚧 Impedimentos: Ninguno
 
-**🔄 Sync del día (17:00):**
-- Flujo catálogo → carrito probado: ⬜ Sí / ⬜ No
-- Problemas encontrados:
-- Decisiones tomadas:
+**📝 Progreso del día (registro en tiempo real):**
+- ✅ `backend/src/controllers/productController.js` — GET/POST/PUT/DELETE productos + categorías
+- ✅ `backend/src/routes/products.js` — rutas públicas y de admin con middleware de roles
+- ✅ `backend/src/controllers/cartController.js` — GET/POST/PUT/DELETE carrito con validación de stock
+- ✅ `backend/src/routes/cart.js` — todas las rutas protegidas con authMiddleware
+- ✅ `backend/migrations/002_add_is_active_to_products.sql` — columna is_active agregada
+- ✅ GET /api/products probado: retorna 8 productos con categorías y paginación
+- ✅ `frontend/src/services/productService.js` — productService + cartService con axios
+- ✅ `frontend/src/context/CartContext.js` — estado global del carrito sincronizado con backend
+- ✅ `frontend/src/pages/CatalogPage.js` — grid de productos, búsqueda, filtros por categoría, paginación
+- ✅ `frontend/src/pages/CartPage.js` — lista de items, control de cantidad, resumen del pedido
+- ✅ `frontend/src/App.js` — CartProvider, nuevas rutas /catalog y /cart, contador en Header
+- ✅ DEV-06 y DEV-07 mergeados a `develop`
+
+**🐛 Bugs encontrados y resueltos:**
+- Columna `is_active` no existía en tabla products → solución: migración 002
+
+**🔄 Sync del día:**
+- Flujo catálogo → carrito probado: ✅ Sí
+- Problemas encontrados: Columna is_active faltante (resuelto con migración)
+- Decisiones tomadas: /cart es ruta protegida, catálogo es público
 
 ---
 
 ### 📆 JUEVES
 
 **Dev A (Frontend):**
-- ✅ Hice ayer:
-- 🎯 Haré hoy:
-- 🚧 Impedimentos:
+- ✅ Hice ayer: CatalogPage con filtros, CartContext, CartPage con control de cantidad
+- 🎯 Haré hoy: CheckoutPage (formulario dirección + resumen), OrderHistoryPage, panel admin básico (CRUD productos)
+- 🚧 Impedimentos: Ninguno
 
 **Dev B (Backend):**
-- ✅ Hice ayer:
-- 🎯 Haré hoy:
-- 🚧 Impedimentos:
+- ✅ Hice ayer: Endpoints productos y carrito completos, migración is_active
+- 🎯 Haré hoy: POST /api/orders (crear orden desde carrito), GET /api/orders/my-orders, GET /api/orders/:id, endpoints admin
+- 🚧 Impedimentos: Ninguno
 
-**🔄 Sync del día (17:00):**
-- Flujo completo carrito → checkout → confirmación probado: ⬜ Sí / ⬜ No
-- Problemas encontrados:
-- Decisiones tomadas:
+**📝 Progreso del día (registro en tiempo real):**
+- ✅ `backend/src/controllers/orderController.js` — POST /api/orders con transacción SQL (BEGIN/COMMIT/ROLLBACK)
+- ✅ `backend/src/routes/orders.js` — rutas de usuario y admin registradas
+- ✅ POST /api/orders probado: crea orden, descuenta stock, vacía carrito ✅
+- ✅ `frontend/src/services/orderService.js` — createOrder, getMyOrders, getOrderById, admin endpoints
+- ✅ `frontend/src/pages/CheckoutPage.js` — formulario de envío + resumen del pedido
+- ✅ `frontend/src/pages/OrderHistoryPage.js` — lista de pedidos + detalle con estado
+- ✅ `frontend/src/pages/AdminPage.js` — CRUD productos + gestión de órdenes con tabs
+- ✅ `frontend/src/App.js` — rutas /checkout, /orders, /orders/:id, /admin + links en Header
+- ✅ DEV-08 y DEV-09 mergeados a `develop`
+
+**🐛 Bugs encontrados y resueltos:**
+- `shipping_name` y `shipping_city` NOT NULL en tabla orders → solución: agregar campos al controller
+- `unit_price` no existe en order_items (columna real: `price`) → solución: corregir INSERT y SELECT
+
+**🔄 Sync del día:**
+- Flujo completo carrito → checkout → confirmación probado: ✅ Sí
+- Problemas encontrados: Columnas incorrectas en orders y order_items (resueltos)
+- Decisiones tomadas: /admin protegido por rol 'admin', /checkout redirige a /cart si está vacío
 
 ---
 
 ### 📆 VIERNES
 
 **Dev A (Frontend):**
-- ✅ Hice ayer:
-- 🎯 Haré hoy:
-- 🚧 Impedimentos:
+- ✅ Hice ayer: CheckoutPage, OrderHistoryPage, AdminPage con CRUD de productos y gestión de órdenes
+- 🎯 Haré hoy: README.md completo, pulir UX (loading states, mensajes de error, página 404), preparar demo
+- 🚧 Impedimentos: Ninguno
 
 **Dev B (Backend):**
-- ✅ Hice ayer:
-- 🎯 Haré hoy:
-- 🚧 Impedimentos:
+- ✅ Hice ayer: POST /api/orders con transacción SQL, endpoints admin de órdenes, fix hash admin
+- 🎯 Haré hoy: Sprint Review (tabla de User Stories), Retrospectiva, tag v1.0.0
+- 🚧 Impedimentos: Ninguno
+
+**📝 Progreso del día (registro en tiempo real):**
+- ✅ `frontend/src/pages/NotFoundPage.js` — página 404 con links a inicio y catálogo
+- ✅ `frontend/src/App.js` — ruta `*` usa NotFoundPage en lugar de Navigate
+- ✅ `README.md` — documentación completa: stack, instalación, endpoints, esquema BD, flujo de compra
+- ✅ Sprint Review completado: 9/10 User Stories entregadas
+- ✅ Retrospectiva completada: START/STOP/CONTINUE + compromisos Sprint 2
+- ✅ DEV-10 mergeado a `develop`, tag `v1.0.0` creado, merge a `main`
+
+**🔄 Sync del día:**
+- Sprint 1 completado: ✅
+- Velocidad del equipo: 9/10 User Stories (90%)
+- Deuda técnica identificada: página de detalle de producto, tests unitarios
 
 ---
 
@@ -139,24 +206,26 @@ sprint y ayuda a identificar patrones (¿siempre hay bloqueos el miércoles? ¿p
 
 | User Story | Estado | Notas |
 |-----------|--------|-------|
-| US-01: Ver catálogo | ⬜ | |
-| US-02: Buscar productos | ⬜ | |
-| US-03: Registro/Login | ⬜ | |
-| US-04: Agregar al carrito | ⬜ | |
-| US-05: Ver/editar carrito | ⬜ | |
-| US-06: Checkout | ⬜ | |
-| US-07: Admin CRUD productos | ⬜ | |
-| US-08: Admin ver pedidos | ⬜ | |
-| US-09: Detalle de producto | ⬜ | |
-| US-10: Historial pedidos | ⬜ | |
+| US-01: Ver catálogo | ✅ | Grid con paginación, filtros por categoría |
+| US-02: Buscar productos | ✅ | Búsqueda por nombre en tiempo real |
+| US-03: Registro/Login | ✅ | JWT, bcrypt, rutas protegidas por rol |
+| US-04: Agregar al carrito | ✅ | Con validación de stock, feedback visual |
+| US-05: Ver/editar carrito | ✅ | Control +/−, eliminar items, vaciar carrito |
+| US-06: Checkout | ✅ | Formulario de envío + transacción SQL atómica |
+| US-07: Admin CRUD productos | ✅ | Tabla + formulario inline, crear/editar/eliminar |
+| US-08: Admin ver pedidos | ✅ | Lista con selector de estado (pending→delivered) |
+| US-09: Detalle de producto | ⬜ | No implementado — página de detalle individual |
+| US-10: Historial pedidos | ✅ | Lista de órdenes + detalle con badge de estado |
 
 ### ¿Qué quedó pendiente y por qué?
 
-*(Anotar aquí)*
+- **US-09 (Detalle de producto):** No se implementó página individual `/products/:id`. El catálogo muestra toda la info relevante en la tarjeta. Se puede agregar en Sprint 2 si hay demanda.
 
 ### Feedback recibido:
 
-*(Anotar aquí)*
+- La app funciona end-to-end: registro → catálogo → carrito → checkout → confirmación ✅
+- El panel admin permite gestionar productos y órdenes sin tocar la BD ✅
+- Mejora sugerida para Sprint 2: imágenes reales de productos, página de detalle, filtros de precio
 
 ---
 
@@ -173,28 +242,29 @@ sprint y ayuda a identificar patrones (¿siempre hay bloqueos el miércoles? ¿p
 
 *(Prácticas nuevas que el equipo debería adoptar)*
 
-- 
-- 
+- Escribir tests unitarios para los controllers antes de integrar al frontend
+- Revisar el esquema SQL con más cuidado antes de escribir el controller (evitar bugs de columnas)
 
 ### 🔴 STOP — ¿Qué deberíamos DEJAR de hacer?
 
 *(Cosas que no están funcionando y hay que eliminar)*
 
-- 
-- 
+- Usar hashes de contraseña de otros proyectos en el seed data sin verificarlos
+- Dejar rutas comentadas en App.js — mejor no agregarlas hasta que estén listas
 
 ### 🟡 CONTINUE — ¿Qué está funcionando bien y debemos MANTENER?
 
 *(Prácticas que el equipo valora y quiere conservar)*
 
-- 
-- 
+- Feature Branch Workflow: una rama por historia, merge con --no-ff, historial limpio
+- Daily Log escrito: ayuda a recordar decisiones y bugs resueltos
+- Transacciones SQL para operaciones críticas (checkout): garantiza consistencia de datos
 
 ### 📌 Compromisos para el próximo sprint:
 
-1. 
-2. 
-3. 
+1. Agregar página de detalle de producto (`/products/:id`) — US-09 pendiente
+2. Implementar imágenes reales de productos (upload o URLs de Unsplash)
+3. Agregar tests con Jest para los endpoints críticos (auth, orders)
 
 ---
 
