@@ -214,4 +214,30 @@ const getCategories = async (req, res) => {
   }
 };
 
-module.exports = { getProducts, getProductById, createProduct, updateProduct, deleteProduct, getCategories };
+/**
+ * POST /api/products/:id/image
+ * Sube una imagen para un producto y actualiza su image_url
+ * Requiere: multipart/form-data con campo "image"
+ */
+const uploadProductImage = async (req, res) => {
+  const { id } = req.params;
+  if (!req.file) {
+    return res.status(400).json({ error: 'No se recibió ningún archivo.' });
+  }
+  try {
+    const imageUrl = `/uploads/${req.file.filename}`;
+    const result = await pool.query(
+      'UPDATE products SET image_url = $1, updated_at = NOW() WHERE id = $2 RETURNING *',
+      [imageUrl, id]
+    );
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Producto no encontrado.' });
+    }
+    res.json({ message: 'Imagen actualizada correctamente.', product: result.rows[0] });
+  } catch (err) {
+    console.error('Error en uploadProductImage:', err);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+};
+
+module.exports = { getProducts, getProductById, createProduct, updateProduct, deleteProduct, getCategories, uploadProductImage };

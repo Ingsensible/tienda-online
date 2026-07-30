@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 // Importar la conexión a la BD (esto verifica la conexión al iniciar)
@@ -21,6 +22,10 @@ app.use(cors({
 
 // Parsear JSON: permite leer req.body en las rutas POST/PUT
 app.use(express.json());
+
+// Servir imágenes subidas estáticamente
+// Las imágenes se acceden como: http://localhost:4000/uploads/product-xxx.jpg
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // ============================================================
 // Rutas
