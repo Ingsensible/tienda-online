@@ -6,7 +6,10 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import CatalogPage from './pages/CatalogPage';
 import CartPage from './pages/CartPage';
-import ProtectedRoute from './components/ProtectedRoute'; // eslint-disable-line no-unused-vars
+import CheckoutPage from './pages/CheckoutPage';
+import OrderHistoryPage, { OrderDetailPage } from './pages/OrderHistoryPage';
+import AdminPage from './pages/AdminPage';
+import ProtectedRoute from './components/ProtectedRoute';
 
 /**
  * Header — Barra de navegación
@@ -37,6 +40,14 @@ const Header = () => {
           )}
           {user ? (
             <>
+              <Link to="/orders" className="text-gray-600 hover:text-blue-600 text-sm hidden sm:inline">
+                Mis pedidos
+              </Link>
+              {user.role === 'admin' && (
+                <Link to="/admin" className="text-gray-600 hover:text-blue-600 text-sm hidden sm:inline">
+                  Admin
+                </Link>
+              )}
               <span className="text-sm text-gray-500 hidden sm:inline">Hola, {user.name}</span>
               <button
                 onClick={logout}
@@ -123,12 +134,11 @@ function App() {
               <Route path="/login"    element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/catalog"  element={<CatalogPage />} />
-              <Route path="/cart"     element={
-                <ProtectedRoute><CartPage /></ProtectedRoute>
-              } />
-              {/* Rutas del Jueves */}
-              {/* <Route path="/checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} /> */}
-              {/* <Route path="/admin"    element={<ProtectedRoute role="admin"><AdminPage /></ProtectedRoute>} /> */}
+              <Route path="/cart"       element={<ProtectedRoute><CartPage /></ProtectedRoute>} />
+              <Route path="/checkout"   element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
+              <Route path="/orders"     element={<ProtectedRoute><OrderHistoryPage /></ProtectedRoute>} />
+              <Route path="/orders/:id" element={<ProtectedRoute><OrderDetailPage /></ProtectedRoute>} />
+              <Route path="/admin"      element={<ProtectedRoute role="admin"><AdminPage /></ProtectedRoute>} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </div>
