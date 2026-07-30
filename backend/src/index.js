@@ -36,16 +36,17 @@ app.get('/', (req, res) => {
 });
 
 // Rutas de la API
-const authRoutes = require('./routes/auth');
-app.use('/api/auth', authRoutes);
+const authRoutes    = require('./routes/auth');
+const productRoutes = require('./routes/products');
+const cartRoutes    = require('./routes/cart');
+
+app.use('/api/auth',     authRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/cart',     cartRoutes);
 
 // TODO: Agregar más rutas conforme avance el sprint
-// const productRoutes = require('./routes/products');
-// const cartRoutes    = require('./routes/cart');
-// const orderRoutes   = require('./routes/orders');
-// app.use('/api/products', productRoutes);
-// app.use('/api/cart',     cartRoutes);
-// app.use('/api/orders',   orderRoutes);
+// const orderRoutes = require('./routes/orders');
+// app.use('/api/orders', orderRoutes);
 
 // ============================================================
 // Manejo de rutas no encontradas (404)
