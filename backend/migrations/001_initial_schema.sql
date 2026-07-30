@@ -123,4 +123,4 @@ INSERT INTO products (name, description, price, image_url, stock, category_id) V
 -- Usuario admin de prueba
 -- Contraseña: admin123 (encriptada con bcrypt rounds=10)
 INSERT INTO users (name, email, password, role) VALUES
-  ('Administrador', 'admin@tienda.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin');
+  ('Administrador', 'admin@tienda.com', '$2a$10$ru07e1.J2BAvTOyhh3ISUOQ6CsafZcWEXukhblKfsxlZziopxeTnq', 'admin');
