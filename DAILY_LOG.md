@@ -109,11 +109,26 @@ sprint y ayuda a identificar patrones (¿siempre hay bloqueos el miércoles? ¿p
 - 🚧 Impedimentos: Ninguno
 
 **📝 Progreso del día (registro en tiempo real):**
+- ✅ `backend/src/controllers/productController.js` — GET/POST/PUT/DELETE productos + categorías
+- ✅ `backend/src/routes/products.js` — rutas públicas y de admin con middleware de roles
+- ✅ `backend/src/controllers/cartController.js` — GET/POST/PUT/DELETE carrito con validación de stock
+- ✅ `backend/src/routes/cart.js` — todas las rutas protegidas con authMiddleware
+- ✅ `backend/migrations/002_add_is_active_to_products.sql` — columna is_active agregada
+- ✅ GET /api/products probado: retorna 8 productos con categorías y paginación
+- ✅ `frontend/src/services/productService.js` — productService + cartService con axios
+- ✅ `frontend/src/context/CartContext.js` — estado global del carrito sincronizado con backend
+- ✅ `frontend/src/pages/CatalogPage.js` — grid de productos, búsqueda, filtros por categoría, paginación
+- ✅ `frontend/src/pages/CartPage.js` — lista de items, control de cantidad, resumen del pedido
+- ✅ `frontend/src/App.js` — CartProvider, nuevas rutas /catalog y /cart, contador en Header
+- ✅ DEV-06 y DEV-07 mergeados a `develop`
 
-**🔄 Sync del día (17:00):**
-- Flujo catálogo → carrito probado: ⬜ Sí / ⬜ No
-- Problemas encontrados:
-- Decisiones tomadas:
+**🐛 Bugs encontrados y resueltos:**
+- Columna `is_active` no existía en tabla products → solución: migración 002
+
+**🔄 Sync del día:**
+- Flujo catálogo → carrito probado: ✅ Sí
+- Problemas encontrados: Columna is_active faltante (resuelto con migración)
+- Decisiones tomadas: /cart es ruta protegida, catálogo es público
 
 ---
 
