@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { productService } from '../services/productService';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import { resolveImageUrl } from '../utils/imageUrl';
 
 /**
  * ProductCard — Tarjeta de producto
@@ -31,7 +32,7 @@ const ProductCard = ({ product }) => {
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
       <img
-        src={product.image_url}
+        src={resolveImageUrl(product.image_url)}
         alt={product.name}
         className="w-full h-48 object-cover bg-gray-100"
         onError={(e) => { e.target.src = 'https://via.placeholder.com/400x300?text=Sin+imagen'; }}
@@ -54,11 +55,17 @@ const ProductCard = ({ product }) => {
             {product.stock > 0 ? `${product.stock} en stock` : 'Agotado'}
           </span>
         </div>
+        <Link
+          to={`/products/${product.id}`}
+          className="mt-2 block w-full py-1.5 px-4 rounded-md text-sm font-medium text-center text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition-colors"
+        >
+          Ver detalle →
+        </Link>
         {user ? (
           <button
             onClick={handleAddToCart}
             disabled={adding || product.stock === 0}
-            className={`mt-3 w-full py-2 px-4 rounded-md text-sm font-medium transition-colors
+            className={`mt-1 w-full py-2 px-4 rounded-md text-sm font-medium transition-colors
               ${added
                 ? 'bg-green-500 text-white'
                 : product.stock === 0
@@ -71,7 +78,7 @@ const ProductCard = ({ product }) => {
         ) : (
           <Link
             to="/login"
-            className="mt-3 block w-full py-2 px-4 rounded-md text-sm font-medium text-center border border-blue-600 text-blue-600 hover:bg-blue-50 transition-colors"
+            className="mt-1 block w-full py-2 px-4 rounded-md text-sm font-medium text-center border border-blue-600 text-blue-600 hover:bg-blue-50 transition-colors"
           >
             Inicia sesión para comprar
           </Link>

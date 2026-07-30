@@ -30,3 +30,6 @@ Thumbs.db
 
 # Coverage de tests
 coverage/
+
+# Imágenes subidas por usuarios (no se versionan)
+backend/uploads/

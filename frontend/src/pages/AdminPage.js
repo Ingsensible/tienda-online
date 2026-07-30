@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { productService } from '../services/productService';
 import { orderService } from '../services/orderService';
 import api from '../services/authService';
+import { resolveImageUrl } from '../utils/imageUrl';
 
 /**
  * AdminPage — Panel de administración
@@ -135,6 +136,7 @@ const AdminProducts = () => {
 
 /**
  * ProductForm — Formulario para crear/editar producto
+ * Soporta subir imagen desde el dispositivo o ingresar URL manualmente
  */
 const ProductForm = ({ product, categories, onSave, onCancel }) => {
   const [form, setForm] = useState({
@@ -145,17 +147,40 @@ const ProductForm = ({ product, categories, onSave, onCancel }) => {
     image_url: product?.image_url || '',
     category_id: product?.category_id || '',
   });
-  const [saving, setSaving] = useState(false);
+  const [saving, setSaving]         = useState(false);
+  const [imageFile, setImageFile]   = useState(null);
+  const [imagePreview, setImagePreview] = useState(product?.image_url || '');
+  const [uploadMode, setUploadMode] = useState('url'); // 'url' | 'file'
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setImageFile(file);
+    setImagePreview(URL.createObjectURL(file));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSaving(true);
     try {
+      let savedProduct;
       if (product) {
-        await api.put(`/products/${product.id}`, { ...form, is_active: true });
+        const res = await api.put(`/products/${product.id}`, { ...form, is_active: true });
+        savedProduct = res.data.product;
       } else {
-        await api.post('/products', form);
+        const res = await api.post('/products', form);
+        savedProduct = res.data.product;
       }
+
+      // Si hay archivo seleccionado, subirlo después de guardar el producto
+      if (imageFile && savedProduct?.id) {
+        const formData = new FormData();
+        formData.append('image', imageFile);
+        await api.post(`/products/${savedProduct.id}/image`, formData, {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        });
+      }
+
       onSave();
     } catch (err) {
       alert(err.response?.data?.error || 'Error al guardar.');
@@ -163,6 +188,13 @@ const ProductForm = ({ product, categories, onSave, onCancel }) => {
       setSaving(false);
     }
   };
+
+  // URL de imagen a mostrar en preview (local o remota)
+  const previewSrc = imagePreview || form.image_url;
+  const isLocalImage = previewSrc && previewSrc.startsWith('/uploads/');
+  const fullPreviewSrc = isLocalImage
+    ? `http://localhost:4000${previewSrc}`
+    : previewSrc;
 
   return (
     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
@@ -172,12 +204,55 @@ const ProductForm = ({ product, categories, onSave, onCancel }) => {
         <textarea className="border rounded px-2 py-1 text-sm col-span-2" placeholder="Descripción" value={form.description} onChange={e => setForm({...form, description: e.target.value})} rows={2} />
         <input className="border rounded px-2 py-1 text-sm" placeholder="Precio" type="number" step="0.01" value={form.price} onChange={e => setForm({...form, price: e.target.value})} required />
         <input className="border rounded px-2 py-1 text-sm" placeholder="Stock" type="number" value={form.stock} onChange={e => setForm({...form, stock: e.target.value})} />
-        <input className="border rounded px-2 py-1 text-sm col-span-2" placeholder="URL de imagen" value={form.image_url} onChange={e => setForm({...form, image_url: e.target.value})} />
+
+        {/* Sección de imagen */}
+        <div className="col-span-2">
+          <div className="flex gap-2 mb-2">
+            <button type="button" onClick={() => setUploadMode('url')}
+              className={`text-xs px-3 py-1 rounded border ${uploadMode === 'url' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-gray-600 border-gray-300'}`}>
+              🔗 URL
+            </button>
+            <button type="button" onClick={() => setUploadMode('file')}
+              className={`text-xs px-3 py-1 rounded border ${uploadMode === 'file' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-gray-600 border-gray-300'}`}>
+              📁 Subir archivo
+            </button>
+          </div>
+
+          {uploadMode === 'url' ? (
+            <input
+              className="border rounded px-2 py-1 text-sm w-full"
+              placeholder="https://ejemplo.com/imagen.jpg"
+              value={form.image_url}
+              onChange={e => { setForm({...form, image_url: e.target.value}); setImagePreview(e.target.value); }}
+            />
+          ) : (
+            <div className="flex items-center gap-3">
+              <label className="cursor-pointer bg-white border border-gray-300 rounded px-3 py-1 text-sm text-gray-600 hover:bg-gray-50">
+                📷 Elegir imagen
+                <input type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
+              </label>
+              {imageFile && <span className="text-xs text-green-600">✅ {imageFile.name}</span>}
+            </div>
+          )}
+
+          {/* Preview de imagen */}
+          {fullPreviewSrc && (
+            <div className="mt-2">
+              <img
+                src={fullPreviewSrc}
+                alt="Preview"
+                className="h-24 w-24 object-cover rounded border"
+                onError={e => { e.target.style.display = 'none'; }}
+              />
+            </div>
+          )}
+        </div>
+
         <select className="border rounded px-2 py-1 text-sm" value={form.category_id} onChange={e => setForm({...form, category_id: e.target.value})}>
           <option value="">Sin categoría</option>
           {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
         </select>
-        <div className="flex gap-2 col-span-2 justify-end">
+        <div className="flex gap-2 justify-end items-center">
           <button type="button" onClick={onCancel} className="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">Cancelar</button>
           <button type="submit" disabled={saving} className="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50">
             {saving ? 'Guardando...' : 'Guardar'}
