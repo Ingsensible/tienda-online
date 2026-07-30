@@ -99,14 +99,16 @@ sprint y ayuda a identificar patrones (¿siempre hay bloqueos el miércoles? ¿p
 ### 📆 MIÉRCOLES
 
 **Dev A (Frontend):**
-- ✅ Hice ayer:
-- 🎯 Haré hoy:
-- 🚧 Impedimentos:
+- ✅ Hice ayer: Páginas Login/Registro, AuthContext, ProtectedRoute, Header dinámico
+- 🎯 Haré hoy: Página de catálogo con grid de productos, componente ProductCard, CartContext, página del carrito
+- 🚧 Impedimentos: Ninguno
 
 **Dev B (Backend):**
-- ✅ Hice ayer:
-- 🎯 Haré hoy:
-- 🚧 Impedimentos:
+- ✅ Hice ayer: Endpoints auth (register, login, /me), middleware JWT, bcrypt
+- 🎯 Haré hoy: GET /api/products, GET /api/products/:id, endpoints del carrito (GET/POST/PUT/DELETE)
+- 🚧 Impedimentos: Ninguno
+
+**📝 Progreso del día (registro en tiempo real):**
 
 **🔄 Sync del día (17:00):**
 - Flujo catálogo → carrito probado: ⬜ Sí / ⬜ No
