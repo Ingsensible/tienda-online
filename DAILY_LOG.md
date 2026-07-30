@@ -169,14 +169,27 @@ sprint y ayuda a identificar patrones (¿siempre hay bloqueos el miércoles? ¿p
 ### 📆 VIERNES
 
 **Dev A (Frontend):**
-- ✅ Hice ayer:
-- 🎯 Haré hoy:
-- 🚧 Impedimentos:
+- ✅ Hice ayer: CheckoutPage, OrderHistoryPage, AdminPage con CRUD de productos y gestión de órdenes
+- 🎯 Haré hoy: README.md completo, pulir UX (loading states, mensajes de error, página 404), preparar demo
+- 🚧 Impedimentos: Ninguno
 
 **Dev B (Backend):**
-- ✅ Hice ayer:
-- 🎯 Haré hoy:
-- 🚧 Impedimentos:
+- ✅ Hice ayer: POST /api/orders con transacción SQL, endpoints admin de órdenes, fix hash admin
+- 🎯 Haré hoy: Sprint Review (tabla de User Stories), Retrospectiva, tag v1.0.0
+- 🚧 Impedimentos: Ninguno
+
+**📝 Progreso del día (registro en tiempo real):**
+- ✅ `frontend/src/pages/NotFoundPage.js` — página 404 con links a inicio y catálogo
+- ✅ `frontend/src/App.js` — ruta `*` usa NotFoundPage en lugar de Navigate
+- ✅ `README.md` — documentación completa: stack, instalación, endpoints, esquema BD, flujo de compra
+- ✅ Sprint Review completado: 9/10 User Stories entregadas
+- ✅ Retrospectiva completada: START/STOP/CONTINUE + compromisos Sprint 2
+- ✅ DEV-10 mergeado a `develop`, tag `v1.0.0` creado, merge a `main`
+
+**🔄 Sync del día:**
+- Sprint 1 completado: ✅
+- Velocidad del equipo: 9/10 User Stories (90%)
+- Deuda técnica identificada: página de detalle de producto, tests unitarios
 
 ---
 
@@ -193,24 +206,26 @@ sprint y ayuda a identificar patrones (¿siempre hay bloqueos el miércoles? ¿p
 
 | User Story | Estado | Notas |
 |-----------|--------|-------|
-| US-01: Ver catálogo | ⬜ | |
-| US-02: Buscar productos | ⬜ | |
-| US-03: Registro/Login | ⬜ | |
-| US-04: Agregar al carrito | ⬜ | |
-| US-05: Ver/editar carrito | ⬜ | |
-| US-06: Checkout | ⬜ | |
-| US-07: Admin CRUD productos | ⬜ | |
-| US-08: Admin ver pedidos | ⬜ | |
-| US-09: Detalle de producto | ⬜ | |
-| US-10: Historial pedidos | ⬜ | |
+| US-01: Ver catálogo | ✅ | Grid con paginación, filtros por categoría |
+| US-02: Buscar productos | ✅ | Búsqueda por nombre en tiempo real |
+| US-03: Registro/Login | ✅ | JWT, bcrypt, rutas protegidas por rol |
+| US-04: Agregar al carrito | ✅ | Con validación de stock, feedback visual |
+| US-05: Ver/editar carrito | ✅ | Control +/−, eliminar items, vaciar carrito |
+| US-06: Checkout | ✅ | Formulario de envío + transacción SQL atómica |
+| US-07: Admin CRUD productos | ✅ | Tabla + formulario inline, crear/editar/eliminar |
+| US-08: Admin ver pedidos | ✅ | Lista con selector de estado (pending→delivered) |
+| US-09: Detalle de producto | ⬜ | No implementado — página de detalle individual |
+| US-10: Historial pedidos | ✅ | Lista de órdenes + detalle con badge de estado |
 
 ### ¿Qué quedó pendiente y por qué?
 
-*(Anotar aquí)*
+- **US-09 (Detalle de producto):** No se implementó página individual `/products/:id`. El catálogo muestra toda la info relevante en la tarjeta. Se puede agregar en Sprint 2 si hay demanda.
 
 ### Feedback recibido:
 
-*(Anotar aquí)*
+- La app funciona end-to-end: registro → catálogo → carrito → checkout → confirmación ✅
+- El panel admin permite gestionar productos y órdenes sin tocar la BD ✅
+- Mejora sugerida para Sprint 2: imágenes reales de productos, página de detalle, filtros de precio
 
 ---
 
@@ -227,28 +242,29 @@ sprint y ayuda a identificar patrones (¿siempre hay bloqueos el miércoles? ¿p
 
 *(Prácticas nuevas que el equipo debería adoptar)*
 
-- 
-- 
+- Escribir tests unitarios para los controllers antes de integrar al frontend
+- Revisar el esquema SQL con más cuidado antes de escribir el controller (evitar bugs de columnas)
 
 ### 🔴 STOP — ¿Qué deberíamos DEJAR de hacer?
 
 *(Cosas que no están funcionando y hay que eliminar)*
 
-- 
-- 
+- Usar hashes de contraseña de otros proyectos en el seed data sin verificarlos
+- Dejar rutas comentadas en App.js — mejor no agregarlas hasta que estén listas
 
 ### 🟡 CONTINUE — ¿Qué está funcionando bien y debemos MANTENER?
 
 *(Prácticas que el equipo valora y quiere conservar)*
 
-- 
-- 
+- Feature Branch Workflow: una rama por historia, merge con --no-ff, historial limpio
+- Daily Log escrito: ayuda a recordar decisiones y bugs resueltos
+- Transacciones SQL para operaciones críticas (checkout): garantiza consistencia de datos
 
 ### 📌 Compromisos para el próximo sprint:
 
-1. 
-2. 
-3. 
+1. Agregar página de detalle de producto (`/products/:id`) — US-09 pendiente
+2. Implementar imágenes reales de productos (upload o URLs de Unsplash)
+3. Agregar tests con Jest para los endpoints críticos (auth, orders)
 
 ---
 
