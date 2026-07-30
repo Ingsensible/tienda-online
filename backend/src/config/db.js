@@ -15,13 +15,19 @@ require('dotenv').config();
  * cualquiera puede ver tu contraseña. Las variables de entorno
  * se cargan en tiempo de ejecución y NUNCA se suben al repo.
  */
-const pool = new Pool({
-  host:     process.env.DB_HOST     || 'localhost',
-  port:     process.env.DB_PORT     || 5432,
-  database: process.env.DB_NAME     || 'tienda_online',
-  user:     process.env.DB_USER     || 'postgres',
-  password: process.env.DB_PASSWORD || '',
-});
+// Railway provee DATABASE_URL; en local usamos variables individuales
+const pool = process.env.DATABASE_URL
+  ? new Pool({
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false } // requerido por Railway/Heroku
+    })
+  : new Pool({
+      host:     process.env.DB_HOST     || 'localhost',
+      port:     process.env.DB_PORT     || 5432,
+      database: process.env.DB_NAME     || 'tienda_online',
+      user:     process.env.DB_USER     || 'postgres',
+      password: process.env.DB_PASSWORD || '',
+    });
 
 // Verificar la conexión al iniciar
 pool.connect((err, client, release) => {
