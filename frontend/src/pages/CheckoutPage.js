@@ -4,7 +4,7 @@ import { useCart } from '../context/CartContext';
 import { orderService } from '../services/orderService';
 
 const CheckoutPage = () => {
-  const { items, total, itemCount } = useCart();
+  const { items, total, itemCount, clearCart } = useCart();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -25,6 +25,7 @@ const CheckoutPage = () => {
     setLoading(true);
     try {
       const data = await orderService.createOrder(form);
+      await clearCart(); // Vaciar carrito después de orden exitosa
       navigate(`/orders/${data.order.id}?success=1`);
     } catch (err) {
       setError(err.response?.data?.error || 'Error al procesar el pedido.');
