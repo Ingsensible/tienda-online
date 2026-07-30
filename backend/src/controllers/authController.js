@@ -119,9 +119,10 @@ const login = async (req, res) => {
     }
 
     // Generar token JWT
+    const secret = process.env.JWT_SECRET || 'fallback_secret_change_in_production';
     const token = jwt.sign(
       { id: user.id, email: user.email, role: user.role },
-      process.env.JWT_SECRET,
+      secret,
       { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
     );
 
@@ -137,8 +138,8 @@ const login = async (req, res) => {
     });
 
   } catch (err) {
-    console.error('Error en login:', err);
-    res.status(500).json({ error: 'Error interno del servidor.' });
+    console.error('Error en login:', err.message, err.stack);
+    res.status(500).json({ error: 'Error interno del servidor.', detail: err.message });
   }
 };
 
