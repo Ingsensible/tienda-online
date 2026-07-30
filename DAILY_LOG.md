@@ -135,16 +135,18 @@ sprint y ayuda a identificar patrones (¿siempre hay bloqueos el miércoles? ¿p
 ### 📆 JUEVES
 
 **Dev A (Frontend):**
-- ✅ Hice ayer:
-- 🎯 Haré hoy:
-- 🚧 Impedimentos:
+- ✅ Hice ayer: CatalogPage con filtros, CartContext, CartPage con control de cantidad
+- 🎯 Haré hoy: CheckoutPage (formulario dirección + resumen), OrderHistoryPage, panel admin básico (CRUD productos)
+- 🚧 Impedimentos: Ninguno
 
 **Dev B (Backend):**
-- ✅ Hice ayer:
-- 🎯 Haré hoy:
-- 🚧 Impedimentos:
+- ✅ Hice ayer: Endpoints productos y carrito completos, migración is_active
+- 🎯 Haré hoy: POST /api/orders (crear orden desde carrito), GET /api/orders/my-orders, GET /api/orders/:id, endpoints admin
+- 🚧 Impedimentos: Ninguno
 
-**🔄 Sync del día (17:00):**
+**📝 Progreso del día (registro en tiempo real):**
+
+**🔄 Sync del día:**
 - Flujo completo carrito → checkout → confirmación probado: ⬜ Sí / ⬜ No
 - Problemas encontrados:
 - Decisiones tomadas:
