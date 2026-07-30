@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { productService } from '../services/productService';
 import { orderService } from '../services/orderService';
 import api from '../services/authService';
-import { resolveImageUrl } from '../utils/imageUrl';
 
 /**
  * AdminPage — Panel de administración
