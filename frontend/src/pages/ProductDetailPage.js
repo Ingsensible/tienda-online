@@ -3,13 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { productService } from '../services/productService';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
-
-// Resuelve URL de imagen local o remota
-const resolveImageUrl = (url) => {
-  if (!url) return 'https://via.placeholder.com/600x400?text=Sin+imagen';
-  if (url.startsWith('/uploads/')) return `http://localhost:4000${url}`;
-  return url;
-};
+import { resolveImageUrl } from '../utils/imageUrl';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
