@@ -28,6 +28,32 @@ export const productService = {
     const response = await api.get('/products/categories');
     return response.data;
   },
+
+  // Admin: CRUD
+  createProduct: async (data) => {
+    const response = await api.post('/products', data);
+    return response.data;
+  },
+
+  updateProduct: async (id, data) => {
+    const response = await api.put(`/products/${id}`, data);
+    return response.data;
+  },
+
+  deleteProduct: async (id) => {
+    const response = await api.delete(`/products/${id}`);
+    return response.data;
+  },
+
+  // Subir imagen de producto (multipart/form-data)
+  uploadImage: async (productId, file) => {
+    const formData = new FormData();
+    formData.append('image', file);
+    const response = await api.post(`/products/${productId}/image`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    });
+    return response.data;
+  },
 };
 
 export const cartService = {

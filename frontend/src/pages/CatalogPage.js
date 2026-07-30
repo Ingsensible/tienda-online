@@ -4,6 +4,13 @@ import { productService } from '../services/productService';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 
+// Resuelve la URL de imagen: si es local (/uploads/...) apunta al backend
+const resolveImageUrl = (url) => {
+  if (!url) return 'https://via.placeholder.com/400x300?text=Sin+imagen';
+  if (url.startsWith('/uploads/')) return `http://localhost:4000${url}`;
+  return url;
+};
+
 /**
  * ProductCard — Tarjeta de producto
  * Componente reutilizable que muestra la info de un producto
@@ -31,7 +38,7 @@ const ProductCard = ({ product }) => {
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
       <img
-        src={product.image_url}
+        src={resolveImageUrl(product.image_url)}
         alt={product.name}
         className="w-full h-48 object-cover bg-gray-100"
         onError={(e) => { e.target.src = 'https://via.placeholder.com/400x300?text=Sin+imagen'; }}

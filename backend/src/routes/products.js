@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const {
-  getProducts, getProductById, createProduct, updateProduct, deleteProduct, getCategories
+  getProducts, getProductById, createProduct, updateProduct, deleteProduct, getCategories, uploadProductImage
 } = require('../controllers/productController');
 const { authMiddleware, requireRole } = require('../middleware/auth');
+const upload = require('../middleware/upload');
 
 /**
  * Rutas de Productos
@@ -29,5 +30,8 @@ router.get('/:id', getProductById);
 router.post('/',     authMiddleware, requireRole('admin'), createProduct);
 router.put('/:id',   authMiddleware, requireRole('admin'), updateProduct);
 router.delete('/:id', authMiddleware, requireRole('admin'), deleteProduct);
+
+// Upload de imagen para un producto
+router.post('/:id/image', authMiddleware, requireRole('admin'), upload.single('image'), uploadProductImage);
 
 module.exports = router;
