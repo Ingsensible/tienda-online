@@ -25,7 +25,8 @@ const authMiddleware = (req, res, next) => {
 
   try {
     // Verificar el token con la clave secreta
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const secret = process.env.JWT_SECRET || 'fallback_secret_change_in_production';
+    const decoded = jwt.verify(token, secret);
     req.user = decoded; // { id, email, role }
     next(); // Continuar con la siguiente función
   } catch (err) {
