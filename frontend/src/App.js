@@ -11,6 +11,7 @@ import OrderHistoryPage, { OrderDetailPage } from './pages/OrderHistoryPage';
 import AdminPage from './pages/AdminPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import NotFoundPage from './pages/NotFoundPage';
+import ProductDetailPage from './pages/ProductDetailPage';
 
 /**
  * Header — Barra de navegación
@@ -135,6 +136,7 @@ function App() {
               <Route path="/login"    element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/catalog"  element={<CatalogPage />} />
+              <Route path="/products/:id" element={<ProductDetailPage />} />
               <Route path="/cart"       element={<ProtectedRoute><CartPage /></ProtectedRoute>} />
               <Route path="/checkout"   element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
               <Route path="/orders"     element={<ProtectedRoute><OrderHistoryPage /></ProtectedRoute>} />
