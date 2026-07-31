@@ -30,7 +30,8 @@ const Header = () => {
           <img
             src="/xype.png"
             alt="Xype"
-            className="h-9 w-auto object-contain group-hover:opacity-90 transition-opacity"
+            className="h-18 w-auto object-contain group-hover:opacity-90 transition-opacity"
+            style={{ height: '72px' }}
           />
         </Link>
 
@@ -116,7 +117,7 @@ const HomePage = () => {
         <div className="relative max-w-3xl mx-auto">
           {/* Logo grande en hero */}
           <div className="flex justify-center mb-8">
-            <img src="/xype.png" alt="Xype" className="h-20 w-auto object-contain" />
+            <img src="/xype.png" alt="Xype" style={{ height: '160px' }} className="w-auto object-contain" />
           </div>
 
           <h1 className="text-5xl font-display font-bold text-white mb-4 leading-tight"
@@ -211,7 +212,7 @@ function App() {
             {/* Footer */}
             <footer style={{ background: '#1a1a28' }} className="mt-16 py-8 px-4">
               <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-                <img src="/xype.png" alt="Xype" className="h-7 w-auto object-contain opacity-80" />
+                <img src="/xype.png" alt="Xype" style={{ height: '56px' }} className="w-auto object-contain opacity-80" />
                 <p className="text-gray-500 text-sm">
                   © {new Date().getFullYear()} Xype. Todos los derechos reservados.
                 </p>
