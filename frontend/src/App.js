@@ -117,7 +117,7 @@ const HomePage = () => {
         <div className="relative max-w-3xl mx-auto">
           {/* Logo grande en hero */}
           <div className="flex justify-center mb-8">
-            <img src="/xype.png" alt="Xype" style={{ height: '160px' }} className="w-auto object-contain" />
+            <img src="/xype.png" alt="Xype" style={{ height: '400px' }} className="w-auto object-contain" />
           </div>
 
           <h1 className="text-5xl font-display font-bold text-white mb-4 leading-tight"
