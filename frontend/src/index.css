@@ -1,11 +1,71 @@
-/* 
-  Directivas de Tailwind CSS
-  Estas 3 líneas son OBLIGATORIAS para que Tailwind funcione.
-  
-  - @tailwind base: resetea los estilos del navegador (normaliza)
-  - @tailwind components: permite usar clases de componentes
-  - @tailwind utilities: incluye todas las clases utilitarias (flex, p-4, text-blue-500, etc.)
-*/
+/* Google Fonts — Inter (sans) + Playfair Display (display) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ============================================================
+   Estilos base — Paleta xype
+   ============================================================ */
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #f8f7f5;
+    color: #22232c;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* ============================================================
+   Componentes reutilizables
+   ============================================================ */
+@layer components {
+  /* Botón primario — dorado */
+  .btn-primary {
+    @apply bg-brand-gold text-brand-800 font-semibold px-6 py-2.5 rounded-lg
+           hover:bg-brand-gold-light transition-all duration-200
+           shadow-gold hover:shadow-gold-lg;
+  }
+
+  /* Botón secundario — oscuro */
+  .btn-secondary {
+    @apply bg-brand-800 text-white font-medium px-6 py-2.5 rounded-lg
+           border border-brand-600 hover:bg-brand-700 transition-all duration-200;
+  }
+
+  /* Botón outline */
+  .btn-outline {
+    @apply border border-brand-gold text-brand-gold font-medium px-6 py-2.5 rounded-lg
+           hover:bg-brand-gold hover:text-brand-800 transition-all duration-200;
+  }
+
+  /* Card estilo xype */
+  .card-xype {
+    @apply bg-white rounded-xl border border-gray-100 shadow-sm
+           hover:shadow-dark transition-all duration-300;
+  }
+
+  /* Badge dorado */
+  .badge-gold {
+    @apply bg-brand-gold text-brand-800 text-xs font-semibold px-2 py-0.5 rounded-full;
+  }
+}
+
+/* ============================================================
+   Animaciones suaves
+   ============================================================ */
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
