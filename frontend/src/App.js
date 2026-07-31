@@ -106,7 +106,7 @@ const HomePage = () => {
     <main className="min-h-screen" style={{ background: '#f8f7f5' }}>
       {/* Hero section */}
       <section
-        className="py-24 px-4 text-center relative overflow-hidden"
+        className="py-8 px-4 text-center relative overflow-hidden"
         style={{ background: 'linear-gradient(160deg, #1a1a28 0%, #22232c 50%, #1e3c64 100%)' }}
       >
         {/* Decoración de fondo */}
@@ -116,7 +116,7 @@ const HomePage = () => {
 
         <div className="relative max-w-3xl mx-auto">
           {/* Logo grande en hero */}
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center mb-3">
             <img src="/xype.png" alt="Xype" style={{ height: '400px' }} className="w-auto object-contain" />
           </div>
 
